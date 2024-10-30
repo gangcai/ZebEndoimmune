@@ -1,7 +1,7 @@
 library(ggplot2)
 library(Seurat)
 library(cowplot)
-zeb.integrated <- readRDS("zebrafish_endothelial_4stages_merged.rds")
+zeb.integrated <- readRDS("../zebrafish_HighGlucosevsControl_merged.rds")
 clusters <- zeb.integrated$seurat_clusters
 samples <- zeb.integrated$orig.ident
 n1 <- sum(names(clusters) == names(samples))
@@ -30,9 +30,10 @@ for(sample in unique(samples)){
 #times <- c(1,2,4,8)
 #times.samples <- c("EC1dpf","EC2dpf","EC4dpf","EC8dpf")
 colnames(result)=c("sample","cluster","total_cells","cluster_cells","percentage")
-days <- sub("EC","",result[,"sample"])
-days <- sub("dpf","",days)
-result=cbind(result,days)
+#experiment <- sub("EC","",result[,"sample"])
+#experiment <- sub("dpf","",experiment)
+experiment <- result[,"sample"]
+result=cbind(result,experiment)
 result=as.data.frame(result)
 
 plot.list <- list()
@@ -43,7 +44,7 @@ for(c in clusters.u){
 	i=i+1
 	#pdf(paste0(cluster,"_","cell_proportion_changes.pdf"))
 	df <- subset(result,cluster==c)
-        plot.list[[i]] <- ggplot(data=df, aes(x=days,y=as.numeric(as.character(percentage)), group = 1)) +
+        plot.list[[i]] <- ggplot(data=df, aes(x=experiment,y=as.numeric(as.character(percentage)), group = 1)) +
 	    geom_line()+
 	    ylab("percentage")+
 	    ggtitle(c)+
@@ -55,10 +56,7 @@ for(c in clusters.u){
 
 
 p <- plot_grid(plot.list[[1]],plot.list[[2]],plot.list[[3]],
-	  plot.list[[4]],plot.list[[5]],plot.list[[6]],
-	  plot.list[[7]],plot.list[[8]],plot.list[[9]],
-	  plot.list[[10]],plot.list[[11]],plot.list[[12]],
-	  plot.list[[13]],plot.list[[14]],ncol=3)
+	  plot.list[[4]],plot.list[[5]],ncol=3)
 
 pdf("cluster_cell_proportion_changes.pdf",height=10)
 print(p)

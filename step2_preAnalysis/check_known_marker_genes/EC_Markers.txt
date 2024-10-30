@@ -1,0 +1,13 @@
+GeneName	CellType
+pecam1	EC
+kdrl	EC
+fli1a	EC
+cldn5b	EC
+tie1	EC
+cdh5	EC
+kdr	EC
+aqp1a.1	EC
+dll4	EC
+flt1	EC
+flt4	EC
+etv2	EC
