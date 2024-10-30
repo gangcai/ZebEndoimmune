@@ -18,3 +18,6 @@ The clusters 0, 1, 2 were identified as endothelial cells (EC) for further EC su
 ### 3.2 further analysis on those ECs by Seurat
 step3_ECSubpopulationAnalysis
 
+
+## citation:
+Wang Xiaoning, Zhao Jinxiang, Xu Jiehuan, Li Bowen, Liu Xia, Xie Gangcai, Duan Xuchu, Liu Dong (2024) Noncaloric monosaccharides induce excessive sprouting angiogenesis in zebrafish via foxo1a-marcksl1a signal eLife 13:RP95427.https://doi.org/10.7554/eLife.95427.2
